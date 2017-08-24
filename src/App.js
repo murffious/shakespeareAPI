@@ -96,7 +96,7 @@ class App extends Component {
                    <TopPlays/>
           </div>
                 <StarRatings/>
-
+                
                 <p>{this.state.reviews.body}</p>
           <div> 
                   <table>
