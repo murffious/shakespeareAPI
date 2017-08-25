@@ -20,7 +20,7 @@ h1 { font-size: 1.5em; margin: 10px; }
   font-family: FontAwesome;
   display: inline-block;
   content: "\f005";
-  color:#FFED85;
+
 }
 
 .rating > .half:before { 
@@ -62,3 +62,13 @@ h1 { font-size: 1.5em; margin: 10px; }
     display:block;
   }
   
+/* ======== Card ======== */
+.card {
+  width: 65%;
+  background-color: white;
+  margin: 0 auto;
+}
+.ratingsCardHead {
+  display: flex;
+  align-items: center;
+}

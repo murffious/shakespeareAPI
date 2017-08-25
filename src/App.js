@@ -1,22 +1,23 @@
 import React, { Component } from 'react';
 import './App.css';
 import axios from 'axios';
+
 import Results from './Components/Results';
 import TopPlays from './Components/TopPlays';
-import StarRatings from './Components/StarRatings';
-
+// import StarRatings from './Components/StarRatings';
+import HeaderNav from './Components/HeaderNav/HeaderNav';
+import Rating from 'react-rating'
 class App extends Component {
     constructor(){
       super();
   
       this.state = {
         results: [],
-        reviews: []
+        reviews: [],
+        averageTotal: null
       }
       this.handleClick = this.handleClick.bind(this)
     }
-  
-    
   
   
     handleClick(id) {
@@ -34,9 +35,7 @@ class App extends Component {
  
     }
   
-    componentDidMount(){
-      var cts = this.state.results.publish_date
-      console.log(new Date(cts).toString())
+    componentDidMount(id){
       const token = 'koOheljmQX'
       const config = {
         headers: {'Authorization': token}
@@ -62,16 +61,30 @@ class App extends Component {
     
       axios.get('http://shakespeare.podium.co/api/reviews', config)          
      .then(res => {
-              console.log(res.data)
-              this.setState({results: res.data.data})
-              console.log(this.state.results)
+              // array of objects I need the rating off off each one to then use to make a total rating
+              let averageOverallRatings = [] 
+               res.data.data.map((e,i) => {
+                 return  averageOverallRatings.push(e.rating)
+              })
+              let total = averageOverallRatings.reduce((a, b)=> {
+                   return a + b 
+              }, 0)
+              let averageTotal = Number((total/100).toFixed(1))
+              // const avg = (xs) => xs.reduce((a, b) => a + b, 0) / xs.length
+              // const totalAvg = (os) => avg(os.map(({ rating }) => rating))
+              // totalAvg(res.data.data.ratings)
+              // console.log(totalAvg)
+              
+              this.setState({results: res.data.data, averageTotal: averageTotal})
             }).catch(onError);
-
+           
 
           }
   
     render() {
+      
       const resultsArr = this.state.results.map((e, i) => {
+        
         return (
           <Results key={i}
                    style={{width:'100%'}}
@@ -80,14 +93,18 @@ class App extends Component {
                    id={e.id}
                    publish_date={e.publish_date}
                    cb={this.handleClick}
+                  
                    />
         ) 
       })
 
 
-
+      
       return (
+        
+        
         <div className="main-container">
+          <HeaderNav/>
           <div className="search-container">
           
             {/* <input onChange={this.handleChange}
@@ -95,22 +112,19 @@ class App extends Component {
                    value={this.state.artist}/> */}
                    <TopPlays/>
           </div>
-                <StarRatings/>
-                
+          <h1>{this.state.averageTotal} out of 5 stars</h1>
+                {/* <StarRatings/> */}
+                <Rating
+                      placeholderRate={this.state.averageTotal}
+                      empty={<img src="http://dreyescat.github.io/react-rating/assets/images/star-grey.png" className="icon" alt="star"/>}
+                      placeholder={<img src="http://dreyescat.github.io/react-rating/assets/images/star-red.png" className="icon" alt="star" />}
+                      full={<img src="http://dreyescat.github.io/react-rating/assets/images/star-yellow.png" className="icon" alt="star" />}
+                    />
+                  <p>Highest Rating</p> <p>Lowest rating</p>
                 <p>{this.state.reviews.body}</p>
           <div> 
-                  <table>
-                      <tbody>
-                      <tr>
-                        <th>Rating</th>
-                        <th>Publish Date</th>
-                        <th>User Id</th>
-                        <th >Author</th>
-                      </tr>
-                        {resultsArr}
-                      </tbody>
-                  </table>
-                   
+
+                  {resultsArr}
            </div> 
         </div>
       );
