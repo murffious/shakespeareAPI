@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import './App.css';
 import axios from 'axios';
-
+import { viewAllRatings } from './service/service';
 import Results from './Components/Results';
+import Play from './Components/Play/Play'
 import TopPlays from './Components/TopPlays';
 // import StarRatings from './Components/StarRatings';
 import HeaderNav from './Components/HeaderNav/HeaderNav';
@@ -12,11 +13,17 @@ class App extends Component {
       super();
   
       this.state = {
-        results: [],
         reviews: [],
+        results: [],
+        results1: [],
+        results2: [],
+        results3: [],
+        results4: [],
+        results5: [],
         averageTotal: null
       }
       this.handleClick = this.handleClick.bind(this)
+      this.viewAllRatings = this.viewAllRatings.bind(this)
     }
   
   
@@ -34,57 +41,113 @@ class App extends Component {
              }).catch( err => console.log(err) );
  
     }
-  
-    componentDidMount(id){
-      const token = 'koOheljmQX'
-      const config = {
-        headers: {'Authorization': token}
-      };
-      const onError = (error) => {
-        console.error('Request Failed:', error.config);
+  viewAllRatings () {}
+    componentDidMount(){
+      this.viewAllRatings()
+    }
+    //   const token = 'koOheljmQX'
+    //   const config = {
+    //     headers: {'Authorization': token}
+    //   };
+    //   const onError = (error) => {
+    //     console.error('Request Failed:', error.config);
     
-        if (error.response) {
-          // Request was made but server responded with something
-          // other than 2xx
-          console.error('Status:',  error.response.status);
-          console.error('Data:',    error.response.data);
-          console.error('Headers:', error.response.headers);
+    //     if (error.response) {
+    //       // Request was made but server responded with something
+    //       // other than 2xx
+    //       console.error('Status:',  error.response.status);
+    //       console.error('Data:',    error.response.data);
+    //       console.error('Headers:', error.response.headers);
     
-        } else {
-          // Something else happened while setting up the request
-          // triggered the error
-          console.error('Error Message:', error.message);
-        }
+    //     } else {
+    //       // Something else happened while setting up the request
+    //       // triggered the error
+    //       console.error('Error Message:', error.message);
+    //     }
     
-        return Promise.reject(error.response || error.message);
-      }
+    //     return Promise.reject(error.response || error.message);
+    //   }
     
-      axios.get('http://shakespeare.podium.co/api/reviews', config)          
-     .then(res => {
-              // array of objects I need the rating off off each one to then use to make a total rating
-              let averageOverallRatings = [] 
-               res.data.data.map((e,i) => {
-                 return  averageOverallRatings.push(e.rating)
-              })
-              let total = averageOverallRatings.reduce((a, b)=> {
-                   return a + b 
-              }, 0)
-              let averageTotal = Number((total/100).toFixed(1))
-              // const avg = (xs) => xs.reduce((a, b) => a + b, 0) / xs.length
-              // const totalAvg = (os) => avg(os.map(({ rating }) => rating))
-              // totalAvg(res.data.data.ratings)
-              // console.log(totalAvg)
-              
-              this.setState({results: res.data.data, averageTotal: averageTotal})
-            }).catch(onError);
+    //   axios.get('http://shakespeare.podium.co/api/reviews', config)          
+    //  .then(res => {
+    //           // array of objects I need the rating off off each one to then use to make a total rating
+    //           let averageOverallRatings = [] 
+    //            res.data.data.map((e,i) => {
+    //              return  averageOverallRatings.push(e.rating)
+    //           })
+    //           let total = averageOverallRatings.reduce((a, b)=> {
+    //                return a + b 
+    //           }, 0)
+    //           let averageTotal = Number((total/res.data.data.length).toFixed(1))
+
+
+    //           // const avg = (xs) => xs.reduce((a, b) => a + b, 0) / xs.length
+    //           // const totalAvg = (os) => avg(os.map(({ rating }) => rating))
+    //           // totalAvg(res.data.data.ratings)
+    //           // console.log(totalAvg)
+
+    //           // List of all reviews
+
+    //           // let ids = []
+    //           // console.log(this.state.results)
+    //           // res.data.data.map((e, i) =>{
+    //           //   return ids.push(e.id)
+    //           // })
+    //           // let reviewsArr = []
+    //           // ids.forEach((item, index, arr) => {
+    //           // axios.get(`http://shakespeare.podium.co/api/reviews/${arr[index]}`, config)          
+    //           // .then(res => {
+    //           //         reviewsArr.push(res.data.data.body)
+    //           //         for (let i = 0; i < reviewsArr.length; i++) { 
+    //           //           reviewsArr[i] = this.state.results[i].body 
+                              
+    //           //                 } 
+    //           //          this.setState({reviews: reviewsArr})
+    //           //          console.log(this.state.reviews)
+    //           //        }).catch( err => console.log(err) );
+    //           //       }) 
+                                      
+    //           // console.log(ids)
+    //           let results5 = []
+    //           let results1 = []
+    //           let results2 = []
+    //           let results3 = []
+    //           let results4 = []
+    //           res.data.data.map((e, i)=> {
+    //              if (i >= 0 && i < 20) {
+    //                results1.push(e)
+    //              } 
+    //              else if (i >= 20 && i < 40) {
+    //               results2.push(e)
+    //             } 
+    //             else if (i >= 40 && i < 60) {
+    //               results3.push(e)
+    //             } 
+    //             else if (i >= 60 && i < 80) {
+    //               results4.push(e)
+    //             } 
+    //             else if (i >= 80 && i < 100) {
+    //               results5.push(e)
+    //             } 
+    //           })
+    //           console.log(results1,results2, results3, results4, results5)
+                
+    //           this.setState({results: res.data.data, averageTotal: averageTotal})
+    //               console.log(this.state.results)
+    //         }).catch(onError);
+
            
 
-          }
+          // }
   
     render() {
+      // const reviewsArrs = this.state.reviews.map((e, i) => {
+      //   return (
+      //     <p>{e}</p>
+      //   )
+      // })
       
       const resultsArr = this.state.results.map((e, i) => {
-        
         return (
           <Results key={i}
                    style={{width:'100%'}}
@@ -93,26 +156,24 @@ class App extends Component {
                    id={e.id}
                    publish_date={e.publish_date}
                    cb={this.handleClick}
-                  
+                   review={this.state.reviews.body}
                    />
         ) 
       })
-
-
-      
       return (
-        
-        
         <div className="main-container">
-          <HeaderNav/>
-          <div className="search-container">
-          
-            {/* <input onChange={this.handleChange}
-                   onKeyDown={this.handleSearch}
-                   value={this.state.artist}/> */}
-                   <TopPlays/>
-          </div>
-          <h1>{this.state.averageTotal} out of 5 stars</h1>
+          <div className="mainWrap">
+            <HeaderNav/>
+          <img src= "https://www.hct.org/ArticleMedia/Images/Home%20Page%20Features/16_New%20Home_Legacy.jpg" alt="shakespeare head" className="splash" />
+          <div className="now-playing-head">NOW PLAYING</div>
+          <Play
+              average={this.state.averageTotal}
+              reviewsNumTotal={this.state.results.length}
+              viewAllRatings={this.viewAllRatings}           
+          />
+         
+          {/* <TopPlays/> */}
+          {/* <h1>{this.state.averageTotal} out of 5 stars</h1> */}
                 {/* <StarRatings/> */}
                 <Rating
                       placeholderRate={this.state.averageTotal}
@@ -120,12 +181,14 @@ class App extends Component {
                       placeholder={<img src="http://dreyescat.github.io/react-rating/assets/images/star-red.png" className="icon" alt="star" />}
                       full={<img src="http://dreyescat.github.io/react-rating/assets/images/star-yellow.png" className="icon" alt="star" />}
                     />
-                  <p>Highest Rating</p> <p>Lowest rating</p>
-                <p>{this.state.reviews.body}</p>
+                  
+               
           <div> 
-
+          
                   {resultsArr}
+                  {/* {reviewsArrs} */}
            </div> 
+          </div>
         </div>
       );
     }

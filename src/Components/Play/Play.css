@@ -1,0 +1,66 @@
+/* Card like section for each play- containing overall rating and play location and name */
+.play-wrap {
+    width: 100%;
+    background: #F6EDC8;
+    display: flex;
+    padding-top: 10px;
+    height: 50%;
+    
+}
+.play-container {
+    display: flex;
+    padding: 10px;
+    background-color: #F0E4B7;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    width: 80%;
+    margin: 0 auto;
+}
+.play-details {
+    margin-left: 4%;
+    width: 35%;
+   }
+.play-name-location {
+       font-size: 18px;
+       display: block;
+       color: #6E3B22;
+}
+.play-name-location + div {
+    color: #666;
+    font-size: 12px;
+    margin: 6px 0 0;
+}
+.btn {
+    display: inline-block;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+  }
+  .btn-primary {
+    color: #f0e4b7;
+    background-color: #6e3b22;
+    border-color: #58270a;
+  }
+  a, .handCursor {
+    cursor: pointer;
+    outline: 0px solid transparent;
+  }
+  a {
+    background: transparent;
+    text-decoration: none;
+  }
+  .seeMore-btn {
+      /* align-self: flex-end; */
+  }

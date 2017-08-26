@@ -1,13 +1,90 @@
 @import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
 
 fieldset, label { margin: 0; padding: 0; }
-body{ margin: 20px; }
+body{ 
+  background: url('https://www.hct.org/Online/branding/images/background.png') repeat #470000; 
+}
 h1 { font-size: 1.5em; margin: 10px; }
+.main-container {
+  overflow: hidden;
+  width: 100%;
+}
+.mainWrap {
+  width: 1170px;
+  margin: 0 auto;
+}
+.splash {
+  max-width: 100%;
+  width: 1170px;
+  height: auto;
+}
+.now-playing-head {
+  width: 100%;
+  height: 10%;
+  background-color: #F0E4B7;
+  font-size: 100px;
+  text-align: center;
+  font-family: 'EB Garamond', serif;
+  color: #6E3B22;
+}
+/* @media (min-width: 1200px)
+{
+.mainWrap {
+    width: 1170px;
+}
 
+}
 
+@media (min-width: 992px)
+{
+.mainWrap {
+    width: 970px;
+}
 
+}
+@media (min-width: 768px)
+{
+.mainWrap {
+    width: 750px;
+}
+} */
+
+.icon {
+  background: transparent;
+}
+.btn {
+  display: inline-block;
+  padding: 6px 12px;
+  margin-bottom: 0;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 1.42857143;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  background-image: none;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+.btn-primary {
+  color: #f0e4b7;
+  background-color: #6e3b22;
+  border-color: #58270a;
+}
+a, .handCursor {
+  cursor: pointer;
+  outline: 0px solid transparent;
+}
+a {
+  background: transparent;
+  text-decoration: none;
+}
 /****** Style Star Rating Widget *****/
-
 .rating { 
   border: none;
   float: left;

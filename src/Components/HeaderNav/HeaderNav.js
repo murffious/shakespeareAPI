@@ -6,7 +6,7 @@ export default function HeaderNav() {
        <div className="mainHeaderNavWrap">
            <div className="navContainer">
                 <img src= {require("../../assets/logo.png")} alt="drama logo" className="logo" />
-                <img src= {require("../../assets/header-name.png")} alt="drama logo" className="logo" />
+                <img src= {require("../../assets/header-name.png")} alt="drama logo" className="haleCenterName" />
            </div> 
 
        </div>
