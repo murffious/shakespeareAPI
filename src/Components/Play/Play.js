@@ -16,11 +16,13 @@ function Play (props) {
                 </div>
                 <div>
                     <p>Actual Spectator Approval Rating</p>
+                    <div className
+				="star-ratings-sprite"><span style={{width: (props.average * 10 * 2) + '%'}} className="star-ratings-sprite-rating"></span></div>
                 <h1> {props.average} out of 5 stars</h1><p>{props.reviewsNumTotal} Total reviews</p>
                 </div>
                 <div >
-                    <div ></div>
-                    <a onClick={()=> props.viewAllRatings()} className="btn btn-primary seeMore-btn"><span>View Reviews</span></a>
+                    <div > <a className="btn btn-primary seeMore-btn"><span>Buy Tickets</span></a></div>
+                    <a onClick={() => props.onClick()} className="btn btn-primary seeMore-btn"><span>Read Reviews</span></a>
                 </div>
                  </div>
             

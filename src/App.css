@@ -2,6 +2,7 @@
 
 fieldset, label { margin: 0; padding: 0; }
 body{ 
+  font-family: 'EB Garamond', serif;
   background: url('https://www.hct.org/Online/branding/images/background.png') repeat #470000; 
 }
 h1 { font-size: 1.5em; margin: 10px; }
@@ -27,6 +28,7 @@ h1 { font-size: 1.5em; margin: 10px; }
   font-family: 'EB Garamond', serif;
   color: #6E3B22;
 }
+
 /* @media (min-width: 1200px)
 {
 .mainWrap {
@@ -121,6 +123,8 @@ a {
 .rating > label:hover ~ input:checked ~ label, /* lighten current selection */
 .rating > input:checked ~ label:hover ~ label { color: #FFED85;  } 
 
+
+/* Orange star ratings */
 .star-ratings-sprite {
   background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/2605/star-rating-sprite.png") repeat-x;
   font-size: 0;
@@ -130,6 +134,7 @@ a {
   text-indent: -999em;
   width: 110px;
   margin: 0 auto;
+  zoom: 1.2;
 }
   .star-ratings-sprite-rating {
     background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/2605/star-rating-sprite.png") repeat-x;
@@ -137,15 +142,40 @@ a {
     float: left;
     height: 21px;
     display:block;
+    
+  }
+  /*==================== Results ================== */
+  .results-overall-wrap {
+        width: 1170px;
+        background: #F6EDC8;
+  }
+
+  .results-wrap {
+    width: 973px;
+    margin: 0 auto;
+    background: #F6EDC8;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
   }
   
 /* ======== Card ======== */
 .card {
-  width: 65%;
-  background-color: white;
-  margin: 0 auto;
+  height: 300px;
+  width: 30%;
+  background-color: #F0E4B7;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  justify-content: center;
+  margin-bottom: 25px;
+  margin-right: 10px;
+  margin-left: 10px;
 }
 .ratingsCardHead {
   display: flex;
   align-items: center;
+  
+}
+
+.rating-author {
+  font-size: 1.1rem;
 }

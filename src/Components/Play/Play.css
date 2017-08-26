@@ -4,7 +4,7 @@
     background: #F6EDC8;
     display: flex;
     padding-top: 10px;
-    height: 50%;
+   padding-bottom: 10px;
     
 }
 .play-container {
@@ -20,13 +20,13 @@
     width: 35%;
    }
 .play-name-location {
-       font-size: 18px;
+       font-size: 23px;
        display: block;
        color: #6E3B22;
 }
 .play-name-location + div {
     color: #666;
-    font-size: 12px;
+    font-size: 14px;
     margin: 6px 0 0;
 }
 .btn {

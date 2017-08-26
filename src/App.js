@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import axios from 'axios';
 import { viewAllRatings } from './service/service';
-import Results from './Components/Results';
+import Results from './Components/Results/Results';
 import Play from './Components/Play/Play'
 import TopPlays from './Components/TopPlays';
 // import StarRatings from './Components/StarRatings';
@@ -20,15 +20,19 @@ class App extends Component {
         results3: [],
         results4: [],
         results5: [],
-        averageTotal: null
+        averageTotal: null,
+        childVisible: false,
+        selectedId: null
       }
       this.handleClick = this.handleClick.bind(this)
-      this.viewAllRatings = this.viewAllRatings.bind(this)
+      this.onClick = this.onClick.bind(this)
+      // this.viewAllRatings = this.viewAllRatings.bind(this)
     }
   
   
     handleClick(id) {
       console.log(id)
+      
       const token = 'koOheljmQX'
       const config = {
         headers: {'Authorization': token}
@@ -36,109 +40,118 @@ class App extends Component {
       axios.get(`http://shakespeare.podium.co/api/reviews/${id}`, config)          
       .then(res => {
                console.log(res)
+               const selectedId = id
+               this.setState({selectedId: id})
+               console.log(this.state.selectedId)
                this.setState({reviews: res.data.data})
                console.log(this.state.reviews)
              }).catch( err => console.log(err) );
+             
  
     }
-  viewAllRatings () {}
-    componentDidMount(){
-      this.viewAllRatings()
+    showReview () {
+
     }
-    //   const token = 'koOheljmQX'
-    //   const config = {
-    //     headers: {'Authorization': token}
-    //   };
-    //   const onError = (error) => {
-    //     console.error('Request Failed:', error.config);
+    onClick () {
+      this.setState({childVisible: !this.state.childVisible});
+    }
+    componentDidMount(){
+      
     
-    //     if (error.response) {
-    //       // Request was made but server responded with something
-    //       // other than 2xx
-    //       console.error('Status:',  error.response.status);
-    //       console.error('Data:',    error.response.data);
-    //       console.error('Headers:', error.response.headers);
+      const token = 'koOheljmQX'
+      const config = {
+        headers: {'Authorization': token}
+      };
+      const onError = (error) => {
+        console.error('Request Failed:', error.config);
     
-    //     } else {
-    //       // Something else happened while setting up the request
-    //       // triggered the error
-    //       console.error('Error Message:', error.message);
-    //     }
+        if (error.response) {
+          // Request was made but server responded with something
+          // other than 2xx
+          console.error('Status:',  error.response.status);
+          console.error('Data:',    error.response.data);
+          console.error('Headers:', error.response.headers);
     
-    //     return Promise.reject(error.response || error.message);
-    //   }
+        } else {
+          // Something else happened while setting up the request
+          // triggered the error
+          console.error('Error Message:', error.message);
+        }
     
-    //   axios.get('http://shakespeare.podium.co/api/reviews', config)          
-    //  .then(res => {
-    //           // array of objects I need the rating off off each one to then use to make a total rating
-    //           let averageOverallRatings = [] 
-    //            res.data.data.map((e,i) => {
-    //              return  averageOverallRatings.push(e.rating)
-    //           })
-    //           let total = averageOverallRatings.reduce((a, b)=> {
-    //                return a + b 
-    //           }, 0)
-    //           let averageTotal = Number((total/res.data.data.length).toFixed(1))
+        return Promise.reject(error.response || error.message);
+      }
+    
+      axios.get('http://shakespeare.podium.co/api/reviews', config)          
+     .then(res => {
+              // array of objects I need the rating off off each one to then use to make a total rating
+              let averageOverallRatings = [] 
+               res.data.data.map((e,i) => {
+                 return  averageOverallRatings.push(e.rating)
+              })
+              let total = averageOverallRatings.reduce((a, b)=> {
+                   return a + b 
+              }, 0)
+              let averageTotal = Number((total/res.data.data.length).toFixed(1))
 
-
-    //           // const avg = (xs) => xs.reduce((a, b) => a + b, 0) / xs.length
-    //           // const totalAvg = (os) => avg(os.map(({ rating }) => rating))
-    //           // totalAvg(res.data.data.ratings)
-    //           // console.log(totalAvg)
+                
+              // const avg = (xs) => xs.reduce((a, b) => a + b, 0) / xs.length
+              // const totalAvg = (os) => avg(os.map(({ rating }) => rating))
+              // totalAvg(res.data.data.ratings)
+              // console.log(totalAvg)
 
     //           // List of all reviews
 
-    //           // let ids = []
-    //           // console.log(this.state.results)
-    //           // res.data.data.map((e, i) =>{
-    //           //   return ids.push(e.id)
-    //           // })
-    //           // let reviewsArr = []
-    //           // ids.forEach((item, index, arr) => {
-    //           // axios.get(`http://shakespeare.podium.co/api/reviews/${arr[index]}`, config)          
-    //           // .then(res => {
-    //           //         reviewsArr.push(res.data.data.body)
-    //           //         for (let i = 0; i < reviewsArr.length; i++) { 
-    //           //           reviewsArr[i] = this.state.results[i].body 
+              // let ids = []
+              // console.log(this.state.results)
+              // res.data.data.map((e, i) =>{
+              //   return ids.push(e.id)
+              // })
+              // let reviewsArr = []
+              // ids.forEach((item, index, arr) => {
+              // axios.get(`http://shakespeare.podium.co/api/reviews/${arr[index]}`, config)          
+              // .then(res => {
+              //         reviewsArr.push(res.data.data.body)
+              //         // for (let i = 0; i < reviewsArr.length; i++) { 
+              //         //   reviewsArr[i] = this.state.results[i].body 
                               
-    //           //                 } 
-    //           //          this.setState({reviews: reviewsArr})
-    //           //          console.log(this.state.reviews)
-    //           //        }).catch( err => console.log(err) );
-    //           //       }) 
+              //         //         } 
+              //          this.setState({reviews: reviewsArr})
+              //          console.log(this.state.reviews)
+              //        }).catch( err => console.log(err) );
+              //       }) 
                                       
-    //           // console.log(ids)
-    //           let results5 = []
-    //           let results1 = []
-    //           let results2 = []
-    //           let results3 = []
-    //           let results4 = []
-    //           res.data.data.map((e, i)=> {
-    //              if (i >= 0 && i < 20) {
-    //                results1.push(e)
-    //              } 
-    //              else if (i >= 20 && i < 40) {
-    //               results2.push(e)
-    //             } 
-    //             else if (i >= 40 && i < 60) {
-    //               results3.push(e)
-    //             } 
-    //             else if (i >= 60 && i < 80) {
-    //               results4.push(e)
-    //             } 
-    //             else if (i >= 80 && i < 100) {
-    //               results5.push(e)
-    //             } 
-    //           })
-    //           console.log(results1,results2, results3, results4, results5)
+              // console.log(ids)
+              let results5 = []
+              let results1 = []
+              let results2 = []
+              let results3 = []
+              let results4 = []
+              res.data.data.map((e, i)=> {
+                 if (i >= 0 && i < 20) {
+                   results1.push(e)
+                 } 
+                 else if (i >= 20 && i < 40) {
+                  results2.push(e)
+                } 
+                else if (i >= 40 && i < 60) {
+                  results3.push(e)
+                } 
+                else if (i >= 60 && i < 80) {
+                  results4.push(e)
+                } 
+                else if (i >= 80 && i < 100) {
+                  results5.push(e)
+                } 
+              })
+              console.log(results1,results2, results3, results4, results5)
                 
-    //           this.setState({results: res.data.data, averageTotal: averageTotal})
-    //               console.log(this.state.results)
-    //         }).catch(onError);
+              this.setState({results: res.data.data, averageTotal: averageTotal})
+                  console.log(this.state.results)
+            }).catch(onError);
 
            
 
-          // }
+          }
   
     render() {
       // const reviewsArrs = this.state.reviews.map((e, i) => {
@@ -148,12 +161,15 @@ class App extends Component {
       // })
       
       const resultsArr = this.state.results.map((e, i) => {
+        console.log(this.state.reviews.body)
+        console.log(this.selectedId)
         return (
           <Results key={i}
                    style={{width:'100%'}}
                    author={e.author}
                    rating={e.rating}
                    id={e.id}
+                   selectedId={this.state.selectedId}
                    publish_date={e.publish_date}
                    cb={this.handleClick}
                    review={this.state.reviews.body}
@@ -169,25 +185,26 @@ class App extends Component {
           <Play
               average={this.state.averageTotal}
               reviewsNumTotal={this.state.results.length}
-              viewAllRatings={this.viewAllRatings}           
+              viewAllRatings={this.viewAllRatings} 
+              onClick={this.onClick}          
           />
          
           {/* <TopPlays/> */}
           {/* <h1>{this.state.averageTotal} out of 5 stars</h1> */}
                 {/* <StarRatings/> */}
-                <Rating
-                      placeholderRate={this.state.averageTotal}
-                      empty={<img src="http://dreyescat.github.io/react-rating/assets/images/star-grey.png" className="icon" alt="star"/>}
-                      placeholder={<img src="http://dreyescat.github.io/react-rating/assets/images/star-red.png" className="icon" alt="star" />}
-                      full={<img src="http://dreyescat.github.io/react-rating/assets/images/star-yellow.png" className="icon" alt="star" />}
-                    />
+                
                   
+               <div className="results-overall-wrap">
+          <div className="results-wrap"> 
+          {
+          this.state.childVisible
+            ? resultsArr
+            : null
+        }
                
-          <div> 
-          
-                  {resultsArr}
                   {/* {reviewsArrs} */}
            </div> 
+           </div>
           </div>
         </div>
       );
