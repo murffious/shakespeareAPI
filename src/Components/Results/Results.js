@@ -11,15 +11,15 @@ export default function Results(props) {
 	return (
 		
 			<div className="card">
-				<div className="ratingsCardHead"><span className="rating-author">{props.author}</span><span><Moment format="MMM DD, YYYY" date={dateToFormat} /></span>
-				
-				{/* <td>{props.id}</td> */}
+				<div className="ratingsCardHead">
+					<span className="rating-author">{props.author}</span>
+					<span>-<Moment format="MMM DD, YYYY" date={dateToFormat} /></span>
 				</div>
 				<p> rated it ({props.rating}) </p> 
 				<div className
 				="star-ratings-sprite"><span style={{width: (props.rating * 10 * 2) + '%'}} className="star-ratings-sprite-rating"></span></div>
-				<a onClick={() => props.cb(props.id)} className="btn btn-primary"><span>Read More</span></a>
-				{ props.selectedId === props.id ? <p >"{props.review}"</p> : null}
+				<a onClick={() => props.cb(props.id)} className="btn btn-primary ratings-quote-button"><span>Read More</span></a>
+				{ props.selectedId === props.id ? <p className="review-quote">"{props.review}"</p> : null}
 		</div>
 	)
 }

@@ -11,8 +11,8 @@ import Rating from 'react-rating';
 
 
 class App extends Component {
-    constructor(){
-      super();
+    constructor(props){
+      super(props);
   
       this.state = {
         reviews: [],
@@ -60,7 +60,7 @@ class App extends Component {
       this.setState({viewButton: !this.state.viewButton})
     }
     componentDidMount(){
-      
+       
     
       const token = 'koOheljmQX'
       const config = {
@@ -84,7 +84,9 @@ class App extends Component {
     
         return Promise.reject(error.response || error.message);
       }
-    
+      // viewAllRatings() 
+     
+      
       axios.get('http://shakespeare.podium.co/api/reviews', config)          
      .then(res => {
               // array of objects I need the rating off off each one to then use to make a total rating
@@ -98,56 +100,56 @@ class App extends Component {
               let averageTotal = Number((total/res.data.data.length).toFixed(1))
 
                 
-              // const avg = (xs) => xs.reduce((a, b) => a + b, 0) / xs.length
-              // const totalAvg = (os) => avg(os.map(({ rating }) => rating))
-              // totalAvg(res.data.data.ratings)
-              // console.log(totalAvg)
+    //           // const avg = (xs) => xs.reduce((a, b) => a + b, 0) / xs.length
+    //           // const totalAvg = (os) => avg(os.map(({ rating }) => rating))
+    //           // totalAvg(res.data.data.ratings)
+    //           // console.log(totalAvg)
 
-    //           // List of all reviews
+    // //           // List of all reviews
 
-              // let ids = []
-              // console.log(this.state.results)
-              // res.data.data.map((e, i) =>{
-              //   return ids.push(e.id)
-              // })
-              // let reviewsArr = []
-              // ids.forEach((item, index, arr) => {
-              // axios.get(`http://shakespeare.podium.co/api/reviews/${arr[index]}`, config)          
-              // .then(res => {
-              //         reviewsArr.push(res.data.data.body)
-              //         // for (let i = 0; i < reviewsArr.length; i++) { 
-              //         //   reviewsArr[i] = this.state.results[i].body 
+    //           // let ids = []
+    //           // console.log(this.state.results)
+    //           // res.data.data.map((e, i) =>{
+    //           //   return ids.push(e.id)
+    //           // })
+    //           // let reviewsArr = []
+    //           // ids.forEach((item, index, arr) => {
+    //           // axios.get(`http://shakespeare.podium.co/api/reviews/${arr[index]}`, config)          
+    //           // .then(res => {
+    //           //         reviewsArr.push(res.data.data.body)
+    //           //         // for (let i = 0; i < reviewsArr.length; i++) { 
+    //           //         //   reviewsArr[i] = this.state.results[i].body 
                               
-              //         //         } 
-              //          this.setState({reviews: reviewsArr})
-              //          console.log(this.state.reviews)
-              //        }).catch( err => console.log(err) );
-              //       }) 
+    //           //         //         } 
+    //           //          this.setState({reviews: reviewsArr})
+    //           //          console.log(this.state.reviews)
+    //           //        }).catch( err => console.log(err) );
+    //           //       }) 
                                       
-              // console.log(ids)
-              let results5 = []
-              let results1 = []
-              let results2 = []
-              let results3 = []
-              let results4 = []
-              res.data.data.map((e, i)=> {
-                 if (i >= 0 && i < 20) {
-                   results1.push(e)
-                 } 
-                 else if (i >= 20 && i < 40) {
-                  results2.push(e)
-                } 
-                else if (i >= 40 && i < 60) {
-                  results3.push(e)
-                } 
-                else if (i >= 60 && i < 80) {
-                  results4.push(e)
-                } 
-                else if (i >= 80 && i < 100) {
-                  results5.push(e)
-                } 
-              })
-              console.log(results1,results2, results3, results4, results5)
+    //           // console.log(ids)
+    //           let results5 = []
+    //           let results1 = []
+    //           let results2 = []
+    //           let results3 = []
+    //           let results4 = []
+    //           res.data.data.map((e, i)=> {
+    //              if (i >= 0 && i < 20) {
+    //                results1.push(e)
+    //              } 
+    //              else if (i >= 20 && i < 40) {
+    //               results2.push(e)
+    //             } 
+    //             else if (i >= 40 && i < 60) {
+    //               results3.push(e)
+    //             } 
+    //             else if (i >= 60 && i < 80) {
+    //               results4.push(e)
+    //             } 
+    //             else if (i >= 80 && i < 100) {
+    //               results5.push(e)
+    //             } 
+    //           })
+    //           console.log(results1,results2, results3, results4, results5)
                 
               this.setState({results: res.data.data, averageTotal: averageTotal})
                   console.log(this.state.results)
@@ -155,7 +157,8 @@ class App extends Component {
 
            
 
-          }
+        
+        }
   
     render() {
       // const reviewsArrs = this.state.reviews.map((e, i) => {
@@ -211,14 +214,13 @@ class App extends Component {
              {
               !this.state.childVisible
                 ? <Play
-                  average={4.5}
+                  average={3.9}
                   reviewsNumTotal={55}
                   viewAllRatings={this.viewAllRatings} 
                   onClick={this.onClick}
                   viewButton={this.state.viewButton}
                   nameLocation={'Macbeth - Sandy'} 
-                  photo={require("./assets/macbeth.jpg")}
-
+                  photo={require("./assets/MacbethEthanHawke.jpg")}
               />
                 : null
                  }

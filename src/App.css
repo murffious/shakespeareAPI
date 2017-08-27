@@ -151,7 +151,7 @@ a {
   }
 
   .results-wrap {
-    width: 973px;
+    width: 81%;
     margin: 0 auto;
     background: #F6EDC8;
     display: flex;
@@ -162,20 +162,32 @@ a {
 /* ======== Card ======== */
 .card {
   height: 300px;
-  width: 30%;
+  width: 28%;
   background-color: #F0E4B7;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   justify-content: center;
   margin-bottom: 25px;
-  margin-right: 10px;
+  margin-right: 5px;
   margin-left: 10px;
+  padding: 10px;
+  color: #6E3B22;
 }
 .ratingsCardHead {
   display: flex;
   align-items: center;
-  
+  justify-content: space-around;
 }
 
 .rating-author {
   font-size: 1.1rem;
+}
+.card p {
+  text-align: center;
+}
+.review-quote {
+  font-size: 1.3em;
+  text-align: center;
+}
+.ratings-quote-button {
+  margin-left: 10%;
 }

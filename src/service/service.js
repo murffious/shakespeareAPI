@@ -23,7 +23,7 @@ export function viewAllRatings () {
   
       return Promise.reject(error.response || error.message);
     }
-    return   axios.get('http://shakespeare.podium.co/api/reviews', config)          
+      axios.get('http://shakespeare.podium.co/api/reviews', config)          
     .then(res => {
              // array of objects I need the rating off off each one to then use to make a total rating
              let averageOverallRatings = [] 
@@ -36,9 +36,9 @@ export function viewAllRatings () {
              let averageTotal = Number((total/res.data.data.length).toFixed(1))
 
 
-
-               
-                  this.setState({results: res.data.data, averageTotal: averageTotal})
+                    console.log({results: res.data.data, averageTotal: averageTotal})
+               return {results: res.data.data, averageTotal: averageTotal}
+              // return    this.setState({results: res.data.data, averageTotal: averageTotal})
                 //  console.log(this.state.results)
            }).catch(onError);
           }
