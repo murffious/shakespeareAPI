@@ -8,10 +8,10 @@ function Play (props) {
         <div className="play-wrap">
              
                  <div className="play-container">
-                <span ><img src= {require("../../assets/hamlet-88.jpg")} alt="The Heart of Robin Hood - West Valley City"/>
+                <span ><img src= {props.photo} alt={props.nameLocation}/>
                 </span>
                 <div className="play-details">
-                    <div className="play-name-location">Hamlet - West Valley City</div>
+                    <div className="play-name-location">{props.nameLocation}</div>
                     <div >August 25 - October 14, 2017</div>
                 </div>
                 <div>
@@ -22,7 +22,10 @@ function Play (props) {
                 </div>
                 <div >
                     <div > <a className="btn btn-primary seeMore-btn"><span>Buy Tickets</span></a></div>
-                    <a onClick={() => props.onClick()} className="btn btn-primary seeMore-btn"><span>Read Reviews</span></a>
+                    <a onClick={() => props.onClick()} className="btn btn-primary seeMore-btn">
+                        
+                        { props.viewButton === true ? <span>Read Reviews</span> : <span>Hide Reviews</span>}
+                        </a>
                 </div>
                  </div>
             

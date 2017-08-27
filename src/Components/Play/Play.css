@@ -61,6 +61,6 @@
     background: transparent;
     text-decoration: none;
   }
-  .seeMore-btn {
-      /* align-self: flex-end; */
-  }
+img {
+    max-width: 235px;
+}  

@@ -7,7 +7,9 @@ import Play from './Components/Play/Play'
 import TopPlays from './Components/TopPlays';
 // import StarRatings from './Components/StarRatings';
 import HeaderNav from './Components/HeaderNav/HeaderNav';
-import Rating from 'react-rating'
+import Rating from 'react-rating';
+
+
 class App extends Component {
     constructor(){
       super();
@@ -22,7 +24,8 @@ class App extends Component {
         results5: [],
         averageTotal: null,
         childVisible: false,
-        selectedId: null
+        selectedId: null,
+        viewButton: true
       }
       this.handleClick = this.handleClick.bind(this)
       this.onClick = this.onClick.bind(this)
@@ -54,6 +57,7 @@ class App extends Component {
     }
     onClick () {
       this.setState({childVisible: !this.state.childVisible});
+      this.setState({viewButton: !this.state.viewButton})
     }
     componentDidMount(){
       
@@ -186,9 +190,38 @@ class App extends Component {
               average={this.state.averageTotal}
               reviewsNumTotal={this.state.results.length}
               viewAllRatings={this.viewAllRatings} 
-              onClick={this.onClick}          
+              onClick={this.onClick}
+              viewButton={this.state.viewButton}
+            nameLocation={'Hamlet - West Valley City'}
+            photo={require("./assets/hamlet-88.jpg")}            
           />
-         
+          {
+          !this.state.childVisible
+            ? <Play
+              average={4.5}
+              reviewsNumTotal={55}
+              viewAllRatings={this.viewAllRatings} 
+              onClick={this.onClick}
+              viewButton={this.state.viewButton}
+              nameLocation={'Romeo & Juliet - Orem'}
+              photo={require("./assets/romeojuliet.jpg")}        
+          />
+            : null
+             }
+             {
+              !this.state.childVisible
+                ? <Play
+                  average={4.5}
+                  reviewsNumTotal={55}
+                  viewAllRatings={this.viewAllRatings} 
+                  onClick={this.onClick}
+                  viewButton={this.state.viewButton}
+                  nameLocation={'Macbeth - Sandy'} 
+                  photo={require("./assets/macbeth.jpg")}
+
+              />
+                : null
+                 }
           {/* <TopPlays/> */}
           {/* <h1>{this.state.averageTotal} out of 5 stars</h1> */}
                 {/* <StarRatings/> */}
@@ -200,7 +233,7 @@ class App extends Component {
           this.state.childVisible
             ? resultsArr
             : null
-        }
+             }
                
                   {/* {reviewsArrs} */}
            </div> 
