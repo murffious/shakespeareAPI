@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export function viewAllRatings () {
-    const token = 'koOheljmQX'
+  const token = 'koOheljmQX'
     const config = {
       headers: {'Authorization': token}
     };

@@ -52,16 +52,12 @@ class App extends Component {
              
  
     }
-    showReview () {
-
-    }
+    
     onClick () {
       this.setState({childVisible: !this.state.childVisible});
       this.setState({viewButton: !this.state.viewButton})
     }
     componentDidMount(){
-       
-    
       const token = 'koOheljmQX'
       const config = {
         headers: {'Authorization': token}
@@ -86,8 +82,7 @@ class App extends Component {
       }
       // viewAllRatings() 
      
-      
-      axios.get('http://shakespeare.podium.co/api/reviews', config)          
+     axios.get('http://shakespeare.podium.co/api/reviews', config)          
      .then(res => {
               // array of objects I need the rating off off each one to then use to make a total rating
               let averageOverallRatings = [] 
@@ -156,7 +151,7 @@ class App extends Component {
             }).catch(onError);
 
            
-
+       
         
         }
   
